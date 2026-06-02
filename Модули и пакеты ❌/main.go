@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"task1_module/greeting"
+	"modules_packets/greeting"
+	"modules_packets/user"
 )
 
 func main() {
@@ -12,4 +13,10 @@ func main() {
 	fmt.Println("ReturnInt from main.go: ", num)
 
 	greeting.SayBad()
+
+	u := user.User{}
+	
+	u.name = "sad"
+
+	fmt.Println("u.name: ", u.name)
 }
