@@ -11,10 +11,7 @@ func main() {
 
 	// слайс
 	mySlice := make([]int, 0, 5)
-
-	mySlice = append(mySlice, 4)
-	mySlice = append(mySlice, 5)
-	mySlice = append(mySlice, 6)
+	mySlice = append(mySlice, 4, 5, 6)
 
 	fmt.Println("\nmySlice:", mySlice)
 	fmt.Println("len:", len(mySlice))
