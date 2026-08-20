@@ -84,5 +84,21 @@ func main() {
 		IsNew:        false,
 	}
 
+	ferrari := car{
+		Brand:        "Ferrari",
+		Model:        "SF90 Stradale",
+		Year:         2023,
+		Color:        "Red",
+		Power:        1000,
+		EngineVolume: 4.0,
+		FuelType:     "Hybrid",
+		Transmission: "Automatic",
+		DriveTrain:   "AWD",
+		Doors:        2,
+		Mileage:      1500,
+		IsNew:        false,
+	}
+
 	carControl(honda)
+	carControl(ferrari)
 }
