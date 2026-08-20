@@ -5,6 +5,7 @@ import (
 	"reflect"
 )
 
+// структура car
 type car struct {
 	Brand        string  // марка
 	Model        string  // модель
@@ -20,23 +21,34 @@ type car struct {
 	IsNew        bool    // состояние (новая - true) / (б/у - false)
 }
 
+// интерфейс car - объявляет набор методов
+type Car interface {
+	Gas()
+	Brake()
+	GetInfo()
+}
+
+// метод структуры car - выводит информацию об ускорение машины
 func (c car) Gas() {
 	fmt.Printf("\nGas, %s. Let's go!\n", c.Brand)
 }
 
+// метод структуры car - выводит информацию о тороможении машины
 func (c car) Brake() {
 	fmt.Printf("\nBrake, %s! Slow down!", c.Brand)
 }
 
-func (c car) getInfo() {
+// метод структуры car - выводит всю информацию о машине
+func (c car) GetInfo() {
 	fmt.Print("\n---------------------------------------------------------")
 	fmt.Printf("\nHere you are, that's all information about")
 	fmt.Printf("\n%s %s %d i've got for today: ", c.Brand, c.Model, c.Year)
 	fmt.Print("\n---------------------------------------------------------")
-	c.printFields()
+	c.PrintFields()
 }
 
-func (c car) printFields() {
+// дополнительный метод структуры car для метода GetInfo() - выводит поля структуры
+func (c car) PrintFields() {
 	val := reflect.ValueOf(c)
 	typ := reflect.TypeOf(c)
 
@@ -48,7 +60,15 @@ func (c car) printFields() {
 	fmt.Println()
 }
 
+// функция, принимающая интерфейс Car, вызывающая его методы
+func carControl(vehicle Car) {
+	vehicle.Gas()
+	vehicle.Brake()
+	vehicle.GetInfo()
+}
+
 func main() {
+	// объявление экземпляра структуры
 	honda := car{
 		Brand:        "Honda",
 		Model:        "Civic Type R",
@@ -64,6 +84,5 @@ func main() {
 		IsNew:        false,
 	}
 
-	honda.Gas()
-	honda.getInfo()
+	carControl(honda)
 }
