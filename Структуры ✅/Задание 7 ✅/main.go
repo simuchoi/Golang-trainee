@@ -1,68 +1,34 @@
 package main
 
 import (
-	"errors"
 	"fmt"
+	"structModule/car"
+	"structModule/ice"
 )
 
-type Car struct {
-	Model  string
-	Engine float64
-	Wheels int
-	Doors  int
-	Color  string
-	IsNew  bool
-	Price  float64
-}
-
 func main() {
-	car1, err := newCar("nissan 350z", 3.2, 4, 3, "black", true, 20000.00)
+	car1, err := car.NewCar(
+		"nissan 350z",
+		3.2,
+		4,
+		3,
+		"black",
+		true,
+		20000.00,
+	)
+
+	car1.Price = -1
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	car1.changeEngine(231)
-	fmt.Println(car1)
-}
+	fmt.Println("car1 struct before: ", car1)
+	car1.ChangeEngine(10)
+	fmt.Println("change engine")
+	fmt.Println("car1 struct after: ", car1)
 
-func newCar(model string, engine float64, wheels int, doors int, color string, isNew bool, price float64) (Car, error) {
-	if model == "" {
-		return Car{}, errors.New("Missing model name")
-	}
-
-	if engine > 10 {
-		return Car{}, errors.New("Too big engine")
-	}
-
-	if wheels < 4 {
-		return Car{}, errors.New("Missing some wheels")
-	}
-
-	if doors < 3 {
-		return Car{}, errors.New("Missing some doors")
-	}
-
-	if color == "" {
-		return Car{}, errors.New("No color")
-	}
-
-	if price < 0 {
-		return Car{}, errors.New("Is it for free?")
-	}
-
-	return Car{
-		Model:  model,
-		Engine: engine,
-		Wheels: wheels,
-		Doors:  doors,
-		Color:  color,
-		IsNew:  isNew,
-		Price:  price,
-	}, nil
-}
-
-func (car *Car) changeEngine(volume float64) {
-	car.Engine = volume
+	iceCream1 := ice.NewIceCream("strawberry", 200.0)
+	fmt.Println("iceCream1 struct: ", iceCream1)
 }
